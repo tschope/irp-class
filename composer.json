@@ -1,0 +1,23 @@
+{
+    "name": "tschope/irp-class",
+    "description": "This class simple bring available dates in GNIB/IRP. This class DON'T make appointment, DONT'T garantee your appointment, this is only check available appointments and you need to use to create a cronjob or application to check and send sms, email or something to your users.",
+    "keywords": ["gnib", "irp", "ireland", "appointments find"],
+    "license" : "BSD-3-Clause-Attribution",
+    "authors" : [
+        {
+            "name": "Rodrigo Tschope",
+            "email": "rodrigo@tschope.tech",
+            "homepage": "https://tschope.tech"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "nesbot/carbon": "^1.22",
+        "guzzlehttp/guzzle": "~6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "IrpClass\\": "src/"
+        }
+    }
+}
