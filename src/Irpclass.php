@@ -14,7 +14,7 @@ class Irpclass
     private $url = "https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/(getAppsNear)";
 
     public $params = [
-        'cat' => 'Student', // 'Student', 'Work'
+        'cat' => 'Study', // 'Study', 'Work'
         'sbcat' => 'All',
         'typ' => 'New',
     ];
@@ -36,7 +36,7 @@ class Irpclass
     {
         if(empty($params))
         {
-            $this->params = array_merge($this->defaultParams, $this->params);
+            $this->params = array_merge($this->params, $this->defaultParams);
         }
         else
         {
@@ -44,7 +44,7 @@ class Irpclass
                 if(!array_key_exists($key,$this->defaultParams))
                     return 'Error! You need to set up cat, sbcat and typ';
 
-            $this->params = array_merge($this->defaultParams, $params);
+            $this->params = array_merge($params, $this->defaultParams);
         }
     }
 
