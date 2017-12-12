@@ -10,7 +10,7 @@ $params['cat'] = 'Work';
 $params['sbcat'] = 'All';
 $params['typ'] = 'Renewal';
 
-$response = new Irpclass($params);
+$irpClass = new Irpclass\Irpclass($params);
 
 if($response['success'])
 {
@@ -49,7 +49,7 @@ $params['cat'] = 'Work';
 $params['sbcat'] = 'All';
 $params['typ'] = 'Renewal';
 
-$response = new Irpclass($params);
+$response = new Irpclass\Irpclass($params);
 
 if($response['success'])
 {
