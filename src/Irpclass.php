@@ -22,7 +22,7 @@ class Irpclass
     public $defaultParams = [
         'verify' => false,
         'openpage' => false,
-        '_' => false,
+        '_' => 1,
     ];
 
     /**
@@ -32,7 +32,12 @@ class Irpclass
      *
      * @return void
      */
-    public function __construct(Array $params = null)
+    public function __construct()
+    {
+
+    }
+
+    private function joinArrays(Array $params = null)
     {
         if(empty($params))
         {
@@ -41,8 +46,10 @@ class Irpclass
         else
         {
             foreach ($params as $key => $value)
-                if(!array_key_exists($key,$this->defaultParams))
+            {
+                if(!array_key_exists($key,$this->params))
                     return 'Error! You need to set up cat, sbcat and typ';
+            }
 
             $this->params = array_merge($params, $this->defaultParams);
         }
@@ -73,8 +80,11 @@ class Irpclass
      *
      * @return array
      */
-    public function get()
+    public function get(Array $params = null)
     {
+
+        $this->joinArrays($params);
+
         $client = new \GuzzleHttp\Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false ),'verify' => false));
         $res = $client->request('GET', $this->url, [
             'query' => $this->params
