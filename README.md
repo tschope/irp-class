@@ -6,16 +6,17 @@ Very simple to use:
 
 ```php
 $params = [];
-$params['cat'] = 'Work';
-$params['sbcat'] = 'All';
-$params['typ'] = 'Renewal';
+$params['cat'] = 'Work'; //Work, Study, Other
+$params['sbcat'] = 'All'; //All it's better
+$params['typ'] = 'Renewal'; //Renewal or New
 
-$irpClass = new Irpclass\Irpclass($params);
+$irpClass = new Irpclass\Irpclass();
+$response = $irpClass->get($params);
 
 if($response['success'])
 {
     if(!empty($response['results'])) {
-        //Results
+        //rows
     }else{
         //empty
     }
@@ -45,16 +46,17 @@ require 'vendor/autoload.php';
 use Irpclass;
 
 $params = [];
-$params['cat'] = 'Work';
-$params['sbcat'] = 'All';
-$params['typ'] = 'Renewal';
+$params['cat'] = 'Work'; //Work, Study, Other
+$params['sbcat'] = 'All'; //All it's better
+$params['typ'] = 'Renewal'; //Renewal or New
 
-$response = new Irpclass\Irpclass($params);
+$irpClass = new Irpclass\Irpclass();
+$response = $irpClass->get($params);
 
 if($response['success'])
 {
     if(!empty($response['results'])) {
-        //Results
+        //rows
     }else{
         //empty
     }
