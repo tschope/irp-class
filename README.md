@@ -65,9 +65,11 @@ if($response['success'])
 
 ##Example of use in Laravel Console
 <script src="https://gist.github.com/tschope/deb56ab640737310ced3c57cb71022ed.js"></script>
+[Go to gist Example](https://gist.github.com/tschope/deb56ab640737310ced3c57cb71022ed)
 
+
+###Without Composer
 <a name="install-nocomposer"/>
-### Without Composer
 
 Why are you not using [composer](http://getcomposer.org/)? Download [Irpclass.php](https://github.com/tschope/irp-class/blob/master/src/Irpclass.php) from the repo and save the file into your project path somewhere. Don't forgot the dependencies, Carbon and Guzzlehttp.
 
