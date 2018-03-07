@@ -63,6 +63,9 @@ if($response['success'])
 }
 ```
 
+##Example of use in Laravel Console
+<script src="https://gist.github.com/tschope/deb56ab640737310ced3c57cb71022ed.js"></script>
+
 <a name="install-nocomposer"/>
 ### Without Composer
 
