@@ -16,7 +16,7 @@ class Irpclass
     public $params = [
         'cat' => 'Study', // 'Study', 'Work'
         'sbcat' => 'All',
-        'typ' => 'New',
+        'typ' => 'New', // New or Renewal
     ];
 
     public $defaultParams = [
@@ -66,11 +66,11 @@ class Irpclass
     private function datesTransform(Array $slots)
     {
         $return = [];
-        foreach ($slots as $slot)
+        foreach ($slots as $key => $slot)
         {
             $time = new \Carbon\Carbon(str_replace(' -','',$slot['time']));
-            $return['time'] = $time;
-            $return['id'] = $slot['id'];
+            $return[$key]['time'] = $time;
+            $return[$key]['id'] = $slot['id'];
         }
         return $return;
     }
