@@ -3,10 +3,14 @@
 namespace Irpclass;
 
 /**
- * This is the dotenv class.
+ * This is the IRP class. Old GNIB. Today the name is IRP.
  *
- * It's responsible for loading a `.env` file in the given directory and
- * setting the environment vars.
+ * This class use guzzlehttp for CURL and Carbon for Dates.
+ * What this class do, simple, go to Burghquay Registration Office website and check if any
+ * available dates to make appointment.
+ * This class don't make appointment, just check if some date is available.
+ *
+ * Feel free to help me if you find some problem or you want to improve
  */
 class Irpclass
 {
@@ -28,8 +32,6 @@ class Irpclass
     /**
      * Create a new Irpclass instance.
      *
-     * @param array $params
-     *
      * @return void
      */
     public function __construct()
@@ -37,6 +39,12 @@ class Irpclass
 
     }
 
+    /**
+     * This class join your params with default params to make CURL
+     *
+     * @param array|null $params
+     * @return string
+     */
     private function joinArrays(Array $params = null)
     {
         if(empty($params))
@@ -56,7 +64,7 @@ class Irpclass
     }
 
     /**
-     * Function to transform retrive date string in carbon date
+     * Function to transform string date in carbon date
      *
      * @param array $slots
      *
@@ -78,6 +86,7 @@ class Irpclass
     /**
      * Function to get data from server
      *
+     * @param array|null $params if you send null, the class use default params
      * @return array
      */
     public function get(Array $params = null)
