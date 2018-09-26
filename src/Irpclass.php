@@ -20,13 +20,15 @@ class Irpclass
     public $params = [
         'cat' => 'Study', // 'Study', 'Work'
         'sbcat' => 'All',
-        'typ' => 'New', // New or Renewal
+        'typ' => 'Renewal', // New or Renewal
+
     ];
 
     public $defaultParams = [
-        'verify' => false,
-        'openpage' => false,
-        '_' => 1,
+        'readform' => '',
+        'k' => '176E82E1765DB6E27AA2EFFBA78BF587',
+        'p' => 'E775A55B7EBDA30B12C5F235530F00D5',
+        '_' => '1537992511762',
     ];
 
     /**
