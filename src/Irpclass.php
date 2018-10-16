@@ -16,19 +16,19 @@ class Irpclass
 {
 
     private $url = "https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/(getAppsNear)";
+    private $urlForm = "https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/AppSelect";
 
     public $params = [
         'cat' => 'Study', // 'Study', 'Work'
         'sbcat' => 'All',
         'typ' => 'Renewal', // New or Renewal
-
     ];
 
     public $defaultParams = [
         'readform' => '',
-        'k' => '176E82E1765DB6E27AA2EFFBA78BF587',
-        'p' => 'E775A55B7EBDA30B12C5F235530F00D5',
-        '_' => '1537992511762',
+        'p' => '',
+        'k' => '',
+        '_' => '',
     ];
 
     /**
@@ -94,6 +94,8 @@ class Irpclass
     public function get(Array $params = null)
     {
 
+        $this->getTokens();
+
         $this->joinArrays($params);
 
         $client = new \GuzzleHttp\Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false ),'verify' => false));
@@ -131,6 +133,47 @@ class Irpclass
         } else {
             $return['error'] = $res->getStatusCode();
             $return['message'] = $res->getBody();
+        }
+
+        return $return;
+
+    }
+
+    private function getTokens(){
+
+        $client = new \GuzzleHttp\Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false ),'verify' => false));
+        $response = $client->request('GET', $this->urlForm, [
+            'OpenForm' => ''
+        ]);
+
+        $return = [
+            'success' => false,
+            'error' => null,
+            'message' => null,
+            'results' => []
+        ];
+
+        if($response->getStatusCode() == 200) {
+
+            $html = $response->getBody()->getContents();
+
+            $newDom = new \domDocument;
+            libxml_use_internal_errors(true);
+            $newDom->loadHTML($html);
+            libxml_use_internal_errors(false);
+            $newDom->preserveWhiteSpace = false;
+            $newDom->validateOnParse = true;
+
+            $this->defaultParams['p'] = $newDom->getElementById('p')->getAttribute('value');
+            $this->defaultParams['k'] = $newDom->getElementById('k')->getAttribute('value');
+            $this->defaultParams['_'] = (string)round(microtime(true) * 1000);
+
+            $return['success'] = true;
+            $return['message'] = 'Get tokens success';
+
+        } else {
+            $return['error'] = $response->getStatusCode();
+            $return['message'] = $response->getBody();
         }
 
         return $return;
